@@ -9,6 +9,9 @@ from urllib import urlencode
 
 import json
 
+API_TOKEN = '(your api token)'
+ROOM_ID = '(your room id)'
+
 API_URL_DEFAULT = 'https://api.hipchat.com/v1/'
 FORMAT_DEFAULT = 'json'
 
@@ -82,7 +85,7 @@ class HipChat(object):
 
 def hipchat_broadcast(by='HipChat', message='Hello, World!', room_id=0):
     """Says random stuff on our Hipchat boards."""
-    hip = HipChat(token="(your api token)")
+    hip = HipChat(token=API_TOKEN)
     hip.method("rooms/message", method="POST",
                parameters={"room_id": room_id, "from": by,
                            "message": message, "message_format": "text"})
@@ -109,9 +112,7 @@ while True:
 
         hipchat_broadcast(
             'Botcoin', 
-            "BITCOIN IS AT $%d!!" % price, 
-
-            # 340685)
-            126708)
+            "BITCOIN IS AT $%d!!" % price,
+            ROOM_ID)
 
     time.sleep(1000)  # 17 minutes
